@@ -53,7 +53,7 @@ except Exception as e:
     # エラーログの出力
     logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
     # エラーメッセージの画面表示
-    st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
+    st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE))
     # 後続の処理を中断
     st.stop()
 
