@@ -8,7 +8,7 @@ def initialize():
     """
     # ✅ OpenAI APIキーをStreamlit Secretsから読み込んで、LangChain用に環境変数へ渡す
     import openai
-    openai.api_key = st.secrets["OPENAI_API_KEY"]
+    openai.api_key = os.getenv("OPENAI_API_KEY") or st.secrets["OPENAI_API_KEY"]
 
     # 初期化データの用意
     initialize_session_state()
