@@ -9,13 +9,18 @@ import os
 import streamlit as st
 from dotenv import load_dotenv
 import logging
-import traceback  # ← エラー詳細表示のため追加
+import traceback
 
 # 自作モジュール
 import utils
-from initialize import initialize
 import components as cn
 import constants as ct
+from initialize import (
+    initialize_session_state,
+    initialize_session_id,
+    initialize_logger,
+    # initialize_retriever  ← コメントアウト（後で戻す）
+)
 
 # ✅ ローカル環境用に .env 読み込み
 load_dotenv()
@@ -29,10 +34,13 @@ st.set_page_config(page_title=ct.APP_NAME)
 logger = logging.getLogger(ct.LOGGER_NAME)
 
 ############################################################
-# 3. 初期化処理（全体を try-except で囲う）
+# 3. 初期化処理（retrieverのみ除外）
 ############################################################
 try:
-    initialize()
+    initialize_session_state()
+    initialize_session_id()
+    initialize_logger()
+    # initialize_retriever()  ← 一時的に無効化して時間短縮
     if "initialized" not in st.session_state:
         st.session_state.initialized = True
         logger.info(ct.APP_BOOT_MESSAGE)
@@ -67,12 +75,10 @@ chat_message = st.chat_input(ct.CHAT_INPUT_HELPER_TEXT)
 # 7. チャット処理
 ############################################################
 if chat_message:
-    # ユーザー入力を表示・記録
     logger.info({"message": chat_message, "application_mode": st.session_state.mode})
     with st.chat_message("user"):
         st.markdown(chat_message)
 
-    # LLM応答生成
     res_box = st.empty()
     with st.spinner(ct.SPINNER_TEXT):
         try:
@@ -82,7 +88,6 @@ if chat_message:
             st.error(utils.build_error_message(ct.GET_LLM_RESPONSE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
             st.stop()
 
-    # LLM応答の表示
     with st.chat_message("assistant"):
         try:
             if st.session_state.mode == ct.ANSWER_MODE_1:
@@ -95,6 +100,5 @@ if chat_message:
             st.error(utils.build_error_message(ct.DISP_ANSWER_ERROR_MESSAGE), icon=ct.ERROR_ICON)
             st.stop()
 
-    # 会話履歴への追加
     st.session_state.messages.append({"role": "user", "content": chat_message})
     st.session_state.messages.append({"role": "assistant", "content": content})
