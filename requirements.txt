@@ -19,10 +19,10 @@ idna==3.10
 jiter==0.9.0
 jsonpatch==1.33
 jsonpointer==3.0.0
-langchain==0.3.25
-langchain-community==0.3.24
-langchain-core==0.3.59
-langchain-text-splitters==0.3.8
+langchain==0.1.14
+langchain-community==0.1.10
+langchain-core==0.1.50
+langchain-text-splitters==0.1.5
 langsmith==0.3.42
 marshmallow==3.26.1
 multidict==6.4.3
@@ -50,4 +50,3 @@ urllib3==2.4.0
 yarl==1.20.0
 zstandard==0.23.0
 langchain-openai==0.1.6
-
