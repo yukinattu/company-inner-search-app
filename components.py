@@ -19,6 +19,7 @@ def display_select_mode():
 
 def display_initial_ai_message():
     with st.sidebar:
+        print("✅ display_initial_ai_message 実行開始")
         st.markdown("**【「社内文書検索」を選択した場合】**")
         st.info("入力内容と関連性が高い社内文書のありかを検索できます。")
         st.code("【入力例】\n社員の育成方針に関するMTGの議事録")  # ← 修正済み
