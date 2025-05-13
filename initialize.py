@@ -2,22 +2,37 @@
 このファイルは、最初の画面読み込み時にのみ実行される初期化処理が記述されたファイルです。
 """
 
+import os
+import logging
+from logging.handlers import TimedRotatingFileHandler
+from uuid import uuid4
+import sys
+import unicodedata
+from dotenv import load_dotenv
+import streamlit as st
+from docx import Document
+from langchain_community.document_loaders import WebBaseLoader
+from langchain.text_splitter import CharacterTextSplitter
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
+import constants as ct
+import openai  # ← ここを明示的に
+
+# .env読み込み（ローカル用）
+load_dotenv()
+
+# ✅ Streamlit用にAPIキーをセット（クラウド環境も考慮）
+openai.api_key = st.secrets.get("OPENAI_API_KEY")
+
 def initialize():
     """
     画面読み込み時に実行する初期化処理
     """
-    # ✅ OpenAI APIキーをStreamlit Secretsから読み込んで、LangChain用に環境変数へ渡す
-    import openai
-    openai.api_key = os.getenv("OPENAI_API_KEY") or st.secrets["OPENAI_API_KEY"]
-
-    # 初期化データの用意
     initialize_session_state()
-    # ログ出力用にセッションIDを生成
     initialize_session_id()
-    # ログ出力の設定
     initialize_logger()
-    # RAGのRetrieverを作成
     initialize_retriever()
+
 
 
 ############################################################
