@@ -22,7 +22,12 @@ import openai  # ← ここを明示的に
 load_dotenv()
 
 # ✅ Streamlit用にAPIキーをセット（クラウド環境も考慮）
-openai.api_key = st.secrets.get("OPENAI_API_KEY")
+if "OPENAI_API_KEY" in st.secrets:
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
+elif os.getenv("OPENAI_API_KEY"):
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+else:
+    raise RuntimeError("❌ OPENAI_API_KEY が設定されていません")
 
 def initialize():
     """
