@@ -23,7 +23,7 @@ CHAT_INPUT_HELPER_TEXT = "こちらからメッセージを送信してくださ
 DOC_SOURCE_ICON = ":material/description: "
 LINK_SOURCE_ICON = ":material/link: "
 WARNING_ICON = ":material/warning:"
-ERROR_ICON = ":material/error:"
+ERROR_ICON = "❌"
 SPINNER_TEXT = "回答生成中..."
 
 
