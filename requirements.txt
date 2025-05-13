@@ -20,9 +20,9 @@ jiter==0.9.0
 jsonpatch==1.33
 jsonpointer==3.0.0
 langchain==0.1.14
-langchain-core==0.1.50
-langchain-community==0.0.38
-langchain-text-splitters==0.0.1
+langchain-core==0.1.52
+langchain-community==0.0.39
+langchain-text-splitters==0.3.8
 langsmith==0.1.20
 marshmallow==3.26.1
 multidict==6.4.3
@@ -49,4 +49,4 @@ typing_extensions==4.13.2
 urllib3==2.4.0
 yarl==1.20.0
 zstandard==0.23.0
-langchain-openai==0.1.6
+langsmith==0.1.20
