@@ -22,12 +22,12 @@ jsonpointer==3.0.0
 langchain==0.1.14
 langchain-core==0.1.50
 langchain-community==0.3.24
-langchain-text-splitters==0.1.5
+langchain-text-splitters==0.3.8
 langsmith==0.3.42
 marshmallow==3.26.1
 multidict==6.4.3
 mypy_extensions==1.1.0
-numpy==2.2.5
+numpy==1.26.4
 openai==1.78.1
 orjson==3.10.18
 packaging==24.2
