@@ -30,7 +30,7 @@ mypy_extensions==1.0.0
 numpy==1.26.4
 openai==1.13.3
 orjson==3.9.10
-packaging==23.1
+packaging==23.2
 propcache==0.3.1
 pydantic==2.5.2
 pydantic-settings==2.1.0
