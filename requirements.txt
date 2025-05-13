@@ -51,3 +51,5 @@ yarl==1.9.2
 zstandard==0.22.0
 langchain-openai==0.0.8
 streamlit==1.31.0
+python-docx==1.1.0
+
